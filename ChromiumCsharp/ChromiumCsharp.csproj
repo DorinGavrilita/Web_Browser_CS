@@ -81,6 +81,12 @@
     <ApplicationIcon>icons8_chrome.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Awesomium.Core, Version=1.7.5.0, Culture=neutral, PublicKeyToken=e1a0d7c8071a5214, processorArchitecture=x86">
+      <HintPath>..\packages\Awesomium.Windows.Forms.Unofficial.1.7.5.0\lib\Awesomium.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Awesomium.Windows.Forms, Version=1.7.5.0, Culture=neutral, PublicKeyToken=9bd24830fbe304a0, processorArchitecture=x86">
+      <HintPath>..\packages\Awesomium.Windows.Forms.Unofficial.1.7.5.0\lib\Awesomium.Windows.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="CefSharp, Version=107.1.40.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
       <HintPath>..\packages\CefSharp.Common.107.1.40\lib\net452\CefSharp.dll</HintPath>
     </Reference>

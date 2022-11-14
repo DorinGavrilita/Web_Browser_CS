@@ -35,10 +35,21 @@
          this.txtUrl = new System.Windows.Forms.TextBox();
          this.btnGo = new System.Windows.Forms.Button();
          this.panel1 = new System.Windows.Forms.Panel();
-         this.imgRefresh = new System.Windows.Forms.Button();
-         this.btnStop = new System.Windows.Forms.Button();
-         this.pContainer = new System.Windows.Forms.Panel();
-         this.pContainer.SuspendLayout();
+         this.btnControl = new System.Windows.Forms.Button();
+         this.button3 = new System.Windows.Forms.Button();
+         this.panel2 = new System.Windows.Forms.Panel();
+         this.tabControl1 = new System.Windows.Forms.TabControl();
+         this.tabPage1 = new System.Windows.Forms.TabPage();
+         this.listBox2 = new System.Windows.Forms.ListBox();
+         this.tabPage2 = new System.Windows.Forms.TabPage();
+         this.tabPage3 = new System.Windows.Forms.TabPage();
+         this.listBox1 = new System.Windows.Forms.ListBox();
+         this.pContainer = new CefSharp.WinForms.ChromiumWebBrowser();
+         this.panel1.SuspendLayout();
+         this.panel2.SuspendLayout();
+         this.tabControl1.SuspendLayout();
+         this.tabPage1.SuspendLayout();
+         this.tabPage3.SuspendLayout();
          this.SuspendLayout();
          // 
          // btnBack
@@ -69,9 +80,10 @@
          // 
          // btnRefresh
          // 
+         this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
          this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
          this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
-         this.btnRefresh.Location = new System.Drawing.Point(99, 13);
+         this.btnRefresh.Location = new System.Drawing.Point(99, 11);
          this.btnRefresh.Margin = new System.Windows.Forms.Padding(8);
          this.btnRefresh.Name = "btnRefresh";
          this.btnRefresh.Size = new System.Drawing.Size(34, 35);
@@ -84,82 +96,160 @@
          // 
          this.txtUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-         this.txtUrl.Location = new System.Drawing.Point(145, 21);
+         this.txtUrl.Location = new System.Drawing.Point(188, 17);
          this.txtUrl.Name = "txtUrl";
-         this.txtUrl.Size = new System.Drawing.Size(559, 22);
+         this.txtUrl.Size = new System.Drawing.Size(652, 22);
          this.txtUrl.TabIndex = 1;
          this.txtUrl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUrl_KeyPress);
          // 
          // btnGo
          // 
          this.btnGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+         this.btnGo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGo.BackgroundImage")));
+         this.btnGo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
          this.btnGo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-         this.btnGo.Location = new System.Drawing.Point(711, 13);
+         this.btnGo.Location = new System.Drawing.Point(847, 13);
          this.btnGo.Margin = new System.Windows.Forms.Padding(4);
          this.btnGo.Name = "btnGo";
-         this.btnGo.Size = new System.Drawing.Size(36, 30);
+         this.btnGo.Size = new System.Drawing.Size(30, 30);
          this.btnGo.TabIndex = 0;
-         this.btnGo.Text = "GO";
          this.btnGo.UseVisualStyleBackColor = true;
          this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
          // 
          // panel1
          // 
+         this.panel1.Controls.Add(this.btnControl);
+         this.panel1.Controls.Add(this.button3);
+         this.panel1.Controls.Add(this.btnGo);
          this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
          this.panel1.Location = new System.Drawing.Point(0, 0);
          this.panel1.Name = "panel1";
-         this.panel1.Size = new System.Drawing.Size(759, 52);
+         this.panel1.Size = new System.Drawing.Size(928, 52);
          this.panel1.TabIndex = 2;
          // 
-         // imgRefresh
+         // btnControl
          // 
-         this.imgRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-         this.imgRefresh.Image = ((System.Drawing.Image)(resources.GetObject("imgRefresh.Image")));
-         this.imgRefresh.Location = new System.Drawing.Point(56, 401);
-         this.imgRefresh.Margin = new System.Windows.Forms.Padding(8);
-         this.imgRefresh.Name = "imgRefresh";
-         this.imgRefresh.Size = new System.Drawing.Size(34, 35);
-         this.imgRefresh.TabIndex = 0;
-         this.imgRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-         this.imgRefresh.UseVisualStyleBackColor = true;
-         this.imgRefresh.Visible = false;
-         this.imgRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+         this.btnControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+         this.btnControl.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnControl.BackgroundImage")));
+         this.btnControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+         this.btnControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+         this.btnControl.Location = new System.Drawing.Point(885, 13);
+         this.btnControl.Margin = new System.Windows.Forms.Padding(4);
+         this.btnControl.Name = "btnControl";
+         this.btnControl.Size = new System.Drawing.Size(30, 30);
+         this.btnControl.TabIndex = 1;
+         this.btnControl.UseVisualStyleBackColor = true;
+         this.btnControl.Click += new System.EventHandler(this.btnControl_Click);
          // 
-         // btnStop
+         // button3
          // 
-         this.btnStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-         this.btnStop.Image = ((System.Drawing.Image)(resources.GetObject("btnStop.Image")));
-         this.btnStop.Location = new System.Drawing.Point(145, 401);
-         this.btnStop.Margin = new System.Windows.Forms.Padding(8);
-         this.btnStop.Name = "btnStop";
-         this.btnStop.Size = new System.Drawing.Size(32, 32);
-         this.btnStop.TabIndex = 0;
-         this.btnStop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-         this.btnStop.UseVisualStyleBackColor = true;
-         this.btnStop.Visible = false;
-         this.btnStop.Click += new System.EventHandler(this.btnRefresh_Click);
+         this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+         this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+         this.button3.Location = new System.Drawing.Point(145, 13);
+         this.button3.Name = "button3";
+         this.button3.Size = new System.Drawing.Size(30, 30);
+         this.button3.TabIndex = 0;
+         this.button3.Text = "+";
+         this.button3.UseVisualStyleBackColor = true;
+         this.button3.Click += new System.EventHandler(this.button3_Click);
+         // 
+         // panel2
+         // 
+         this.panel2.Controls.Add(this.tabControl1);
+         this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+         this.panel2.Location = new System.Drawing.Point(0, 52);
+         this.panel2.Name = "panel2";
+         this.panel2.Size = new System.Drawing.Size(273, 502);
+         this.panel2.TabIndex = 4;
+         this.panel2.Visible = false;
+         // 
+         // tabControl1
+         // 
+         this.tabControl1.Controls.Add(this.tabPage1);
+         this.tabControl1.Controls.Add(this.tabPage2);
+         this.tabControl1.Controls.Add(this.tabPage3);
+         this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.tabControl1.Location = new System.Drawing.Point(0, 0);
+         this.tabControl1.Name = "tabControl1";
+         this.tabControl1.SelectedIndex = 0;
+         this.tabControl1.Size = new System.Drawing.Size(273, 502);
+         this.tabControl1.TabIndex = 0;
+         // 
+         // tabPage1
+         // 
+         this.tabPage1.Controls.Add(this.listBox2);
+         this.tabPage1.Location = new System.Drawing.Point(4, 25);
+         this.tabPage1.Name = "tabPage1";
+         this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+         this.tabPage1.Size = new System.Drawing.Size(265, 473);
+         this.tabPage1.TabIndex = 0;
+         this.tabPage1.Text = "Закладки";
+         this.tabPage1.UseVisualStyleBackColor = true;
+         // 
+         // listBox2
+         // 
+         this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+         this.listBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.listBox2.FormattingEnabled = true;
+         this.listBox2.ItemHeight = 16;
+         this.listBox2.Location = new System.Drawing.Point(3, 3);
+         this.listBox2.Name = "listBox2";
+         this.listBox2.Size = new System.Drawing.Size(259, 467);
+         this.listBox2.TabIndex = 0;
+         // 
+         // tabPage2
+         // 
+         this.tabPage2.Location = new System.Drawing.Point(4, 25);
+         this.tabPage2.Name = "tabPage2";
+         this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+         this.tabPage2.Size = new System.Drawing.Size(265, 473);
+         this.tabPage2.TabIndex = 1;
+         this.tabPage2.Text = "История";
+         this.tabPage2.UseVisualStyleBackColor = true;
+         // 
+         // tabPage3
+         // 
+         this.tabPage3.Controls.Add(this.listBox1);
+         this.tabPage3.Location = new System.Drawing.Point(4, 25);
+         this.tabPage3.Name = "tabPage3";
+         this.tabPage3.Size = new System.Drawing.Size(265, 473);
+         this.tabPage3.TabIndex = 2;
+         this.tabPage3.Text = "Тек вкладки";
+         this.tabPage3.UseVisualStyleBackColor = true;
+         // 
+         // listBox1
+         // 
+         this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+         this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.listBox1.FormattingEnabled = true;
+         this.listBox1.ItemHeight = 16;
+         this.listBox1.Location = new System.Drawing.Point(0, 0);
+         this.listBox1.Name = "listBox1";
+         this.listBox1.Size = new System.Drawing.Size(265, 473);
+         this.listBox1.TabIndex = 1;
+         this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
          // 
          // pContainer
          // 
-         this.pContainer.Controls.Add(this.btnStop);
-         this.pContainer.Controls.Add(this.imgRefresh);
+         this.pContainer.ActivateBrowserOnCreation = false;
          this.pContainer.Dock = System.Windows.Forms.DockStyle.Fill;
          this.pContainer.Location = new System.Drawing.Point(0, 52);
          this.pContainer.Name = "pContainer";
-         this.pContainer.Size = new System.Drawing.Size(759, 502);
-         this.pContainer.TabIndex = 3;
+         this.pContainer.Size = new System.Drawing.Size(928, 502);
+         this.pContainer.TabIndex = 6;
+         this.pContainer.AddressChanged += new System.EventHandler<CefSharp.AddressChangedEventArgs>(this.pContainer_AddressChanged);
          // 
          // Form1
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.ClientSize = new System.Drawing.Size(759, 554);
-         this.Controls.Add(this.pContainer);
+         this.ClientSize = new System.Drawing.Size(928, 554);
+         this.Controls.Add(this.panel2);
          this.Controls.Add(this.txtUrl);
          this.Controls.Add(this.btnRefresh);
-         this.Controls.Add(this.btnGo);
          this.Controls.Add(this.btnForward);
          this.Controls.Add(this.btnBack);
+         this.Controls.Add(this.pContainer);
          this.Controls.Add(this.panel1);
          this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
          this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -169,7 +259,11 @@
          this.Text = "Chromium";
          this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
          this.Load += new System.EventHandler(this.Form1_Load);
-         this.pContainer.ResumeLayout(false);
+         this.panel1.ResumeLayout(false);
+         this.panel2.ResumeLayout(false);
+         this.tabControl1.ResumeLayout(false);
+         this.tabPage1.ResumeLayout(false);
+         this.tabPage3.ResumeLayout(false);
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -183,9 +277,16 @@
         private System.Windows.Forms.TextBox txtUrl;
         private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button imgRefresh;
-        private System.Windows.Forms.Button btnStop;
-      private System.Windows.Forms.Panel pContainer;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+      private System.Windows.Forms.ListBox listBox2;
+      private System.Windows.Forms.Button button3;
+      private System.Windows.Forms.TabPage tabPage3;
+      private System.Windows.Forms.ListBox listBox1;
+        private CefSharp.WinForms.ChromiumWebBrowser pContainer;
+      private System.Windows.Forms.Button btnControl;
    }
 }
 
