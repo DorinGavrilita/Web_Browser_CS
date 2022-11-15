@@ -28,6 +28,7 @@
       /// </summary>
       private void InitializeComponent()
       {
+         this.components = new System.ComponentModel.Container();
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
          this.btnBack = new System.Windows.Forms.Button();
          this.btnForward = new System.Windows.Forms.Button();
@@ -39,17 +40,27 @@
          this.button3 = new System.Windows.Forms.Button();
          this.panel2 = new System.Windows.Forms.Panel();
          this.tabControl1 = new System.Windows.Forms.TabControl();
-         this.tabPage1 = new System.Windows.Forms.TabPage();
-         this.listBox2 = new System.Windows.Forms.ListBox();
-         this.tabPage2 = new System.Windows.Forms.TabPage();
          this.tabPage3 = new System.Windows.Forms.TabPage();
          this.listBox1 = new System.Windows.Forms.ListBox();
+         this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+         this.добавитьСтраницуВЗакладкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.tabPage1 = new System.Windows.Forms.TabPage();
+         this.listBox2 = new System.Windows.Forms.ListBox();
+         this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+         this.удалитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+         this.tabPage2 = new System.Windows.Forms.TabPage();
+         this.richTextBox1 = new System.Windows.Forms.RichTextBox();
          this.pContainer = new CefSharp.WinForms.ChromiumWebBrowser();
+         this.btnClearHistory = new System.Windows.Forms.Button();
          this.panel1.SuspendLayout();
          this.panel2.SuspendLayout();
          this.tabControl1.SuspendLayout();
-         this.tabPage1.SuspendLayout();
          this.tabPage3.SuspendLayout();
+         this.contextMenuStrip1.SuspendLayout();
+         this.tabPage1.SuspendLayout();
+         this.contextMenuStrip2.SuspendLayout();
+         this.tabPage2.SuspendLayout();
          this.SuspendLayout();
          // 
          // btnBack
@@ -96,10 +107,13 @@
          // 
          this.txtUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+         this.txtUrl.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+         this.txtUrl.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
          this.txtUrl.Location = new System.Drawing.Point(188, 17);
          this.txtUrl.Name = "txtUrl";
          this.txtUrl.Size = new System.Drawing.Size(652, 22);
          this.txtUrl.TabIndex = 1;
+         this.txtUrl.TextChanged += new System.EventHandler(this.txtUrl_TextChanged);
          this.txtUrl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUrl_KeyPress);
          // 
          // btnGo
@@ -140,6 +154,7 @@
          this.btnControl.TabIndex = 1;
          this.btnControl.UseVisualStyleBackColor = true;
          this.btnControl.Click += new System.EventHandler(this.btnControl_Click);
+         this.btnControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnControl_KeyDown);
          // 
          // button3
          // 
@@ -165,15 +180,60 @@
          // 
          // tabControl1
          // 
+         this.tabControl1.Controls.Add(this.tabPage3);
          this.tabControl1.Controls.Add(this.tabPage1);
          this.tabControl1.Controls.Add(this.tabPage2);
-         this.tabControl1.Controls.Add(this.tabPage3);
          this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
          this.tabControl1.Location = new System.Drawing.Point(0, 0);
          this.tabControl1.Name = "tabControl1";
          this.tabControl1.SelectedIndex = 0;
          this.tabControl1.Size = new System.Drawing.Size(273, 502);
          this.tabControl1.TabIndex = 0;
+         // 
+         // tabPage3
+         // 
+         this.tabPage3.Controls.Add(this.listBox1);
+         this.tabPage3.Location = new System.Drawing.Point(4, 25);
+         this.tabPage3.Name = "tabPage3";
+         this.tabPage3.Size = new System.Drawing.Size(265, 473);
+         this.tabPage3.TabIndex = 2;
+         this.tabPage3.Text = "Тек вкладки";
+         this.tabPage3.UseVisualStyleBackColor = true;
+         // 
+         // listBox1
+         // 
+         this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+         this.listBox1.ContextMenuStrip = this.contextMenuStrip1;
+         this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.listBox1.FormattingEnabled = true;
+         this.listBox1.ItemHeight = 16;
+         this.listBox1.Location = new System.Drawing.Point(0, 0);
+         this.listBox1.Name = "listBox1";
+         this.listBox1.Size = new System.Drawing.Size(265, 473);
+         this.listBox1.TabIndex = 1;
+         this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+         // 
+         // contextMenuStrip1
+         // 
+         this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьСтраницуВЗакладкиToolStripMenuItem,
+            this.удалитьToolStripMenuItem});
+         this.contextMenuStrip1.Name = "contextMenuStrip1";
+         this.contextMenuStrip1.Size = new System.Drawing.Size(242, 48);
+         // 
+         // добавитьСтраницуВЗакладкиToolStripMenuItem
+         // 
+         this.добавитьСтраницуВЗакладкиToolStripMenuItem.Name = "добавитьСтраницуВЗакладкиToolStripMenuItem";
+         this.добавитьСтраницуВЗакладкиToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+         this.добавитьСтраницуВЗакладкиToolStripMenuItem.Text = "Добавить страницу в закладки";
+         this.добавитьСтраницуВЗакладкиToolStripMenuItem.Click += new System.EventHandler(this.добавитьСтраницуВЗакладкиToolStripMenuItem_Click);
+         // 
+         // удалитьToolStripMenuItem
+         // 
+         this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
+         this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+         this.удалитьToolStripMenuItem.Text = "Удалить";
+         this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
          // 
          // tabPage1
          // 
@@ -189,6 +249,7 @@
          // listBox2
          // 
          this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+         this.listBox2.ContextMenuStrip = this.contextMenuStrip2;
          this.listBox2.Dock = System.Windows.Forms.DockStyle.Fill;
          this.listBox2.FormattingEnabled = true;
          this.listBox2.ItemHeight = 16;
@@ -197,8 +258,24 @@
          this.listBox2.Size = new System.Drawing.Size(259, 467);
          this.listBox2.TabIndex = 0;
          // 
+         // contextMenuStrip2
+         // 
+         this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.удалитьToolStripMenuItem1});
+         this.contextMenuStrip2.Name = "contextMenuStrip2";
+         this.contextMenuStrip2.Size = new System.Drawing.Size(119, 26);
+         // 
+         // удалитьToolStripMenuItem1
+         // 
+         this.удалитьToolStripMenuItem1.Name = "удалитьToolStripMenuItem1";
+         this.удалитьToolStripMenuItem1.Size = new System.Drawing.Size(118, 22);
+         this.удалитьToolStripMenuItem1.Text = "Удалить";
+         this.удалитьToolStripMenuItem1.Click += new System.EventHandler(this.удалитьToolStripMenuItem1_Click);
+         // 
          // tabPage2
          // 
+         this.tabPage2.Controls.Add(this.btnClearHistory);
+         this.tabPage2.Controls.Add(this.richTextBox1);
          this.tabPage2.Location = new System.Drawing.Point(4, 25);
          this.tabPage2.Name = "tabPage2";
          this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -207,27 +284,16 @@
          this.tabPage2.Text = "История";
          this.tabPage2.UseVisualStyleBackColor = true;
          // 
-         // tabPage3
+         // richTextBox1
          // 
-         this.tabPage3.Controls.Add(this.listBox1);
-         this.tabPage3.Location = new System.Drawing.Point(4, 25);
-         this.tabPage3.Name = "tabPage3";
-         this.tabPage3.Size = new System.Drawing.Size(265, 473);
-         this.tabPage3.TabIndex = 2;
-         this.tabPage3.Text = "Тек вкладки";
-         this.tabPage3.UseVisualStyleBackColor = true;
-         // 
-         // listBox1
-         // 
-         this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-         this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.listBox1.FormattingEnabled = true;
-         this.listBox1.ItemHeight = 16;
-         this.listBox1.Location = new System.Drawing.Point(0, 0);
-         this.listBox1.Name = "listBox1";
-         this.listBox1.Size = new System.Drawing.Size(265, 473);
-         this.listBox1.TabIndex = 1;
-         this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+         this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+         this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.richTextBox1.Location = new System.Drawing.Point(3, 3);
+         this.richTextBox1.Name = "richTextBox1";
+         this.richTextBox1.ReadOnly = true;
+         this.richTextBox1.Size = new System.Drawing.Size(259, 467);
+         this.richTextBox1.TabIndex = 8;
+         this.richTextBox1.Text = "";
          // 
          // pContainer
          // 
@@ -237,7 +303,18 @@
          this.pContainer.Name = "pContainer";
          this.pContainer.Size = new System.Drawing.Size(928, 502);
          this.pContainer.TabIndex = 6;
-         this.pContainer.AddressChanged += new System.EventHandler<CefSharp.AddressChangedEventArgs>(this.pContainer_AddressChanged);
+         // 
+         // btnClearHistory
+         // 
+         this.btnClearHistory.Dock = System.Windows.Forms.DockStyle.Bottom;
+         this.btnClearHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+         this.btnClearHistory.Location = new System.Drawing.Point(3, 433);
+         this.btnClearHistory.Name = "btnClearHistory";
+         this.btnClearHistory.Size = new System.Drawing.Size(259, 37);
+         this.btnClearHistory.TabIndex = 7;
+         this.btnClearHistory.Text = "Очистить историю";
+         this.btnClearHistory.UseVisualStyleBackColor = true;
+         this.btnClearHistory.Click += new System.EventHandler(this.btnClearHistory_Click);
          // 
          // Form1
          // 
@@ -262,8 +339,11 @@
          this.panel1.ResumeLayout(false);
          this.panel2.ResumeLayout(false);
          this.tabControl1.ResumeLayout(false);
-         this.tabPage1.ResumeLayout(false);
          this.tabPage3.ResumeLayout(false);
+         this.contextMenuStrip1.ResumeLayout(false);
+         this.tabPage1.ResumeLayout(false);
+         this.contextMenuStrip2.ResumeLayout(false);
+         this.tabPage2.ResumeLayout(false);
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -287,6 +367,13 @@
       private System.Windows.Forms.ListBox listBox1;
         private CefSharp.WinForms.ChromiumWebBrowser pContainer;
       private System.Windows.Forms.Button btnControl;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem добавитьСтраницуВЗакладкиToolStripMenuItem;
+      private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
+      private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+      private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem1;
+      private System.Windows.Forms.RichTextBox richTextBox1;
+      private System.Windows.Forms.Button btnClearHistory;
    }
 }
 

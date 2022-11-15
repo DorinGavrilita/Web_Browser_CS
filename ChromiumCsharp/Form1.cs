@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EasyTabs;
 using System.Web.UI.WebControls;
+using System.Reflection;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ChromiumCsharp
 {
@@ -20,8 +22,11 @@ namespace ChromiumCsharp
       public Form1()
       {
          InitializeComponent();
+
+         richTextBox1.Text = File.ReadAllText("history.t$");
+         listBox2.Items.AddRange(File.ReadAllLines("save-pages.txt"));
       }
-            
+
       ChromiumWebBrowser chrome;
 
       private void Form1_Load(object sender, EventArgs e)
@@ -29,8 +34,8 @@ namespace ChromiumCsharp
          CefSettings settings = new CefSettings();
 
          // Initialize
-        /// Cef.IsInitialized(settings);
-         txtUrl.Text = "https://google.com";
+         /// Cef.IsInitialized(settings);
+         txtUrl.Text = "";
          chrome = new ChromiumWebBrowser(txtUrl.Text);
          chrome.Dock = DockStyle.Fill;
          pContainer.Controls.Add(chrome);
@@ -54,17 +59,29 @@ namespace ChromiumCsharp
       {
          // chrome.Load(txtUrl.Text);
 
-         int index = listBox1.SelectedIndex;
-         string namesite = txtUrl.Text;
-         try
+         if (txtUrl.Text.Contains("https://") || txtUrl.Text.Contains("http://"))
          {
-            pContainer.Load(namesite);
-            listBox1.Items[listBox1.SelectedIndex] = namesite; 
-         }
-         catch (Exception)
+            int index = listBox1.SelectedIndex;
+            string namesite = txtUrl.Text;
+            try
+            {
+               chrome.Load(namesite);
+               listBox1.Items[listBox1.SelectedIndex] = namesite;
+               AppContainer.ActiveForm.Text = namesite;
+            }
+            catch (Exception)
+            {
+               chrome.Load("https://google.com");
+               MessageBox.Show("Wrong Site name!");
+            }
+            File.AppendAllText("history.t$", txtUrl.Text + "\n");
+            richTextBox1.Text = File.ReadAllText("history.t$");
+
+         } else
          {
-            pContainer.Load("https://google.com");
-            MessageBox.Show("Wrong Site name!");
+            chrome.Load("https://www.google.com/search?q=" + txtUrl.Text);
+            File.AppendAllText("history.t$", "Google: " + txtUrl.Text + "\n");
+            richTextBox1.Text = File.ReadAllText("history.t$");
          }
       }
 
@@ -81,7 +98,7 @@ namespace ChromiumCsharp
 
       private void btnBack_Click(object sender, EventArgs e)
       {
-        if(chrome.CanGoBack)
+         if (chrome.CanGoBack)
             chrome.Back();
       }
 
@@ -93,7 +110,8 @@ namespace ChromiumCsharp
       private void txtUrl_KeyPress(object sender, KeyPressEventArgs e)
       {
          if (e.KeyChar == (char)13)
-            chrome.Load(txtUrl.Text);
+            //  chrome.Load(txtUrl.Text);
+            btnGo_Click(sender, e);
       }
 
       private void button3_Click(object sender, EventArgs e)
@@ -103,28 +121,78 @@ namespace ChromiumCsharp
 
       private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
       {
-        int index = listBox1.SelectedIndex;
+         int index = listBox1.SelectedIndex;
          try
          {
-            chrome.Load(listBox1.Items[index].ToString());
+            if (listBox1.Items[listBox1.SelectedIndex].ToString() != "New Tab")
+               chrome.Load(listBox1.Items[index].ToString());
+            else
+            {
+               chrome.Load("https://google.com");
+            }
          }
-         catch(Exception)
+         catch (Exception)
          {
-            pContainer.Load("https://google.com");
+            chrome.Load("https://google.com");
          }
-      }
-
-      private void pContainer_AddressChanged(object sender, AddressChangedEventArgs e)
-      {
-
       }
 
       private void btnControl_Click(object sender, EventArgs e)
       {
-        if(panel2.Visible == false)
+         if (panel2.Visible == false)
             panel2.Visible = true;
-        else
+         else
             panel2.Visible = false;
+      }
+
+      private void добавитьСтраницуВЗакладкиToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         File.AppendAllText("save-pages.txt", listBox1.Items[listBox1.SelectedIndex].ToString());
+         listBox2.Items.Add(listBox1.Items[listBox1.SelectedIndex].ToString());
+      }
+
+      private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+      }
+
+      private void удалитьToolStripMenuItem1_Click(object sender, EventArgs e)
+      {
+         listBox2.Items.RemoveAt(listBox1.SelectedIndex);
+
+      }
+
+      private void txtUrl_TextChanged(object sender, EventArgs e)
+      {
+         try
+         {
+            string[] history_search = File.ReadAllLines("history.t$");
+            AutoCompleteStringCollection st = new AutoCompleteStringCollection();
+            foreach (string ste in history_search)
+            {
+               string ste2 = ste.Replace("Google: ", "").Trim();
+               st.Add(ste2);
+            }
+            txtUrl.AutoCompleteCustomSource = st;
+         }
+         catch(Exception)
+         {
+
+         }
+      }
+
+      private void btnControl_KeyDown(object sender, KeyEventArgs e)
+      {
+         if (e.Control && e.KeyCode == Keys.H)
+         {
+            добавитьСтраницуВЗакладкиToolStripMenuItem_Click(sender, e);
+         }
+      }
+
+      private void btnClearHistory_Click(object sender, EventArgs e)
+      {
+         File.WriteAllText("history.t$", "");
+         richTextBox1.Text = File.ReadAllText("history.t$");
       }
    }
 }
